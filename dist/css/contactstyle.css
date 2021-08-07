@@ -1,0 +1,695 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  background: url("./bg.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.preload {
+  height: 100vh;
+  width: 100%;
+  background-color: #242424;
+  position: fixed;
+  z-index: 10;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: opacity 1s ease;
+  transition: opacity 1s ease;
+}
+
+.preload .line-top, .preload .line-bottom {
+  position: absolute;
+  width: 60%;
+  height: 2px;
+  background-color: white;
+}
+
+.preload .wireframe {
+  width: 90%;
+  position: absolute;
+}
+
+.preload .logo-stroke {
+  width: 25%;
+  position: absolute;
+}
+
+.preload .line-top {
+  top: 30%;
+}
+
+.preload .line-bottom {
+  bottom: 30%;
+}
+
+.preload-finish {
+  opacity: 0;
+  pointer-events: none;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container .navbar-container, .footer-container .navbar-container {
+  width: 100vw;
+  height: 7vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #3c3c3c;
+  position: relative;
+  z-index: 1;
+}
+
+.container .navbar-container .navbar, .footer-container .navbar-container .navbar {
+  width: 75%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.container .navbar-container .navbar .navLeft, .footer-container .navbar-container .navbar .navLeft {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.container .navbar-container .navbar .navLeft li .logo svg, .footer-container .navbar-container .navbar .navLeft li .logo svg {
+  position: relative;
+  z-index: 3;
+  width: 3rem;
+  height: 3rem;
+  margin-top: 0.4rem;
+}
+
+.container .navbar-container .navbar .navLeft li .logo svg:hover path, .footer-container .navbar-container .navbar .navLeft li .logo svg:hover path {
+  fill: #B2FFFA;
+}
+
+.container .navbar-container .navbar .navLeft li .logo svg path, .footer-container .navbar-container .navbar .navLeft li .logo svg path {
+  display: block;
+  fill: #00FFF0;
+}
+
+.container .navbar-container .navbar .navLeft .linksLeft a, .footer-container .navbar-container .navbar .navLeft .linksLeft a {
+  font-size: 1.1rem;
+  position: relative;
+  z-index: 3;
+  padding-left: 1rem;
+  color: #00FFF0;
+  -webkit-transition: color 0.25s;
+  transition: color 0.25s;
+  -webkit-transition-timing-function: linear;
+          transition-timing-function: linear;
+}
+
+.container .navbar-container .navbar .navLeft .linksLeft a:hover, .footer-container .navbar-container .navbar .navLeft .linksLeft a:hover {
+  color: #B2FFFA;
+}
+
+.container .navbar-container .navbar .navRight, .footer-container .navbar-container .navbar .navRight {
+  display: none;
+}
+
+.footer-container {
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #3c3c3c;
+}
+
+.footer-container .copyright {
+  text-align: center;
+  padding: 1rem 0;
+  color: white;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.form-section {
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.form-section .form-container {
+  width: 75%;
+  background: -webkit-gradient(linear, left top, right bottom, from(rgba(255, 255, 255, 0.3)), to(rgba(255, 255, 255, 0.1)));
+  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+  border-radius: 20px;
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 3rem 0;
+}
+
+.form-section .form-container .first-part {
+  padding: 3rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.form-section .form-container .first-part h2 {
+  color: #FFC200;
+  font-weight: 700;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.form-section .form-container .first-part p {
+  color: white;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+
+.form-section .form-container .first-part .divider {
+  height: 1px;
+  width: 100%;
+  margin: 1.5rem 0;
+  background: -webkit-gradient(linear, left top, right top, from(rgba(178, 255, 250, 0.2)), color-stop(#b2fffa), to(rgba(178, 255, 250, 0.2)));
+  background: linear-gradient(to right, rgba(178, 255, 250, 0.2), #b2fffa, rgba(178, 255, 250, 0.2));
+}
+
+.form-section .form-container .first-part .mail, .form-section .form-container .first-part .phone, .form-section .form-container .first-part .location {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.form-section .form-container .first-part .mail svg, .form-section .form-container .first-part .phone svg, .form-section .form-container .first-part .location svg {
+  height: 2rem;
+  width: 2rem;
+  fill: #cbb0ff;
+}
+
+.form-section .form-container .first-part .mail p, .form-section .form-container .first-part .phone p, .form-section .form-container .first-part .location p {
+  font-size: 1rem;
+  margin-left: 0.7rem;
+}
+
+.form-section .form-container .first-part .dp {
+  width: 50%;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  -webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
+}
+
+.form-section .form-container .second-part {
+  padding: 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.form-section .form-container .second-part .name-label, .form-section .form-container .second-part .mail-label, .form-section .form-container .second-part .message-label {
+  color: white;
+  font-weight: 400;
+  font-size: 1rem;
+  margin-bottom: 0.7rem;
+}
+
+.form-section .form-container .second-part #name-input, .form-section .form-container .second-part #message-input, .form-section .form-container .second-part #mail-input {
+  height: 2.5rem;
+  width: 100%;
+  border: none;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.4);
+  margin-bottom: 0.7rem;
+  padding: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.form-section .form-container .second-part #message-input {
+  height: 7rem;
+}
+
+.form-section .form-container .second-part .submit {
+  border: none;
+  background-color: white;
+  padding: 0.8em 1.5em;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #242424;
+  margin: 1rem 0;
+  border-radius: 50px;
+  -webkit-box-shadow: 0 0 0 #FFC200;
+          box-shadow: 0 0 0 #FFC200;
+  -webkit-transition: background-color 0.1s, -webkit-box-shadow 0.1s;
+  transition: background-color 0.1s, -webkit-box-shadow 0.1s;
+  transition: background-color 0.1s, box-shadow 0.1s;
+  transition: background-color 0.1s, box-shadow 0.1s, -webkit-box-shadow 0.1s;
+  -webkit-transition-timing-function: linear;
+          transition-timing-function: linear;
+}
+
+.form-section .form-container .second-part .submit:hover {
+  background-color: #FFC200;
+  -webkit-box-shadow: 0 0 15px #FFC200;
+          box-shadow: 0 0 15px #FFC200;
+}
+
+@media only screen and (max-width: 575px) {
+  .container .navbar-container .navbar, .footer-container .navbar-container .navbar {
+    width: 85%;
+  }
+  .container .navbar-container .navbar .navLeft li .logo svg, .footer-container .navbar-container .navbar .navLeft li .logo svg {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+  .container .navbar-container .navbar .navLeft .linksLeft a, .footer-container .navbar-container .navbar .navLeft .linksLeft a {
+    font-size: 0.8rem;
+  }
+  .container .copyright, .footer-container .copyright {
+    font-size: 0.8rem;
+  }
+  .form-section .form-container {
+    width: 85%;
+  }
+  .form-section .form-container .first-part {
+    padding: 2rem;
+  }
+  .form-section .form-container .first-part h2 {
+    font-size: 2rem;
+  }
+  .form-section .form-container .first-part p {
+    font-size: 1rem;
+  }
+  .form-section .form-container .first-part .mail svg, .form-section .form-container .first-part .phone svg, .form-section .form-container .first-part .location svg {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+  .form-section .form-container .first-part .mail p, .form-section .form-container .first-part .phone p, .form-section .form-container .first-part .location p {
+    font-size: 0.8rem;
+  }
+  .form-section .form-container .first-part .location {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+  .form-section .form-container .second-part {
+    padding: 2rem;
+  }
+  .form-section .form-container .second-part .name-label, .form-section .form-container .second-part .mail-label, .form-section .form-container .second-part .message-label {
+    font-size: 1rem;
+  }
+  .form-section .form-container .second-part #name-input, .form-section .form-container .second-part #message-input, .form-section .form-container .second-part #mail-input, .form-section .form-container .second-part #message-input {
+    font-size: 0.8rem;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .preload .logo-stroke {
+    width: 20%;
+  }
+  .form-section .form-container {
+    margin: 5rem 0;
+  }
+  .form-section .form-container .first-part, .form-section .form-container .second-part {
+    padding: 4rem;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .preload .logo-stroke {
+    width: 15%;
+  }
+  .preload .wireframe {
+    width: 70%;
+  }
+  .container .navbar-container .navbar, .footer-container .navbar-container .navbar {
+    width: 80%;
+  }
+  .container .navbar-container .navbar .navLeft, .footer-container .navbar-container .navbar .navLeft {
+    width: unset;
+  }
+  .container .navbar-container .navbar .navLeft li a, .footer-container .navbar-container .navbar .navLeft li a {
+    font-size: 1.4rem;
+  }
+  .container .navbar-container .navbar .navRight, .footer-container .navbar-container .navbar .navRight {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .container .navbar-container .navbar .navRight ul, .footer-container .navbar-container .navbar .navRight ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: end;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    float: right;
+  }
+  .container .navbar-container .navbar .navRight ul li, .footer-container .navbar-container .navbar .navRight ul li {
+    padding: 0 0.5rem;
+  }
+  .container .navbar-container .navbar .navRight ul li a svg, .footer-container .navbar-container .navbar .navRight ul li a svg {
+    height: 2rem;
+    width: 2rem;
+  }
+  .container .navbar-container .navbar .navRight ul li a svg path, .footer-container .navbar-container .navbar .navRight ul li a svg path {
+    fill: #00FFF0;
+  }
+  .container .navbar-container .navbar .navRight ul li a svg:hover path, .footer-container .navbar-container .navbar .navRight ul li a svg:hover path {
+    fill: #B2FFFA;
+  }
+  .form-section .form-container {
+    width: 80%;
+    margin: 7rem 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  .form-section .form-container .first-part, .form-section .form-container .second-part {
+    width: 50%;
+  }
+  .form-section .form-container .first-part {
+    border-bottom: unset;
+    border-right: 2px solid rgba(255, 255, 255, 0.3);
+    border-bottom-right-radius: 20px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .preload .logo-stroke {
+    width: 10%;
+  }
+  .preload .wireframe {
+    width: 60%;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .container .navbar-container .navbar, .footer-container .navbar-container .navbar {
+    width: 70%;
+  }
+  .container .navbar-container .navbar .navLeft .linksLeft, .footer-container .navbar-container .navbar .navLeft .linksLeft {
+    margin-left: 2rem;
+  }
+  .container .navbar-container .navbar .navRight ul li, .footer-container .navbar-container .navbar .navRight ul li {
+    margin-left: 2rem;
+  }
+  .form-section .form-container {
+    width: 70%;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .form-section .form-container .second-part .name-label, .form-section .form-container .second-part .mail-label, .form-section .form-container .second-part .message-label {
+    font-size: 1.3rem;
+  }
+  .form-section .form-container .second-part .submit {
+    font-size: 1.1rem;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .form-section .form-container {
+    margin: 10rem 0;
+  }
+  .form-section .form-container .first-part h2 {
+    font-size: 3.5rem;
+  }
+  .form-section .form-container .first-part p {
+    font-size: 1.3rem;
+  }
+  .form-section .form-container .first-part .mail svg, .form-section .form-container .first-part .phone svg, .form-section .form-container .first-part .location svg {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+  .form-section .form-container .first-part .mail p, .form-section .form-container .first-part .phone p, .form-section .form-container .first-part .location p {
+    font-size: 1.3rem;
+  }
+  .form-section .form-container .second-part #name-input, .form-section .form-container .second-part #message-input, .form-section .form-container .second-part #mail-input {
+    height: 3rem;
+  }
+  .form-section .form-container .second-part #message-input {
+    height: 10rem;
+  }
+}
+
+@media only screen and (min-width: 2560px) {
+  .preload .logo-stroke {
+    width: 7%;
+  }
+  .preload .wireframe {
+    width: 50%;
+  }
+  .container .navbar-container .navbar .navLeft li .logo svg, .footer-container .navbar-container .navbar .navLeft li .logo svg {
+    height: 5rem;
+    width: 5rem;
+  }
+  .form-section {
+    height: 90vh;
+  }
+  .form-section .form-container {
+    margin: 14rem 0;
+  }
+  .form-section .form-container .first-part .dp {
+    width: 30%;
+  }
+  .form-section .form-container .first-part h2 {
+    font-size: 4rem;
+  }
+  .form-section .form-container .first-part p {
+    font-size: 1.5rem;
+    line-height: 2.3rem;
+  }
+  .form-section .form-container .first-part .mail svg, .form-section .form-container .first-part .phone svg, .form-section .form-container .first-part .location svg {
+    height: 3rem;
+    width: 3rem;
+  }
+  .form-section .form-container .first-part .mail p, .form-section .form-container .first-part .phone p, .form-section .form-container .first-part .location p {
+    font-size: 1.5rem;
+    margin-left: 1.2rem;
+  }
+  .form-section .form-container .second-part .name-label, .form-section .form-container .second-part .mail-label, .form-section .form-container .second-part .message-label {
+    font-size: 1.5rem;
+  }
+  .form-section .form-container .second-part #name-input, .form-section .form-container .second-part #message-input, .form-section .form-container .second-part #mail-input {
+    height: 4rem;
+  }
+  .form-section .form-container .second-part #message-input {
+    height: 13rem;
+  }
+  .form-section .form-container .second-part .submit {
+    font-size: 1.6rem;
+  }
+}
+
+@media only screen and (min-width: 3800px) {
+  .container .copyright, .footer-container .copyright {
+    font-size: 2rem;
+  }
+  .container .navbar-container .navbar .navLeft li .logo svg, .footer-container .navbar-container .navbar .navLeft li .logo svg {
+    height: 6rem;
+    width: 6rem;
+  }
+  .container .navbar-container .navbar .navLeft .linksLeft a, .footer-container .navbar-container .navbar .navLeft .linksLeft a {
+    font-size: 2.2rem;
+    padding-left: 4rem;
+  }
+  .container .navbar-container .navbar .navRight ul li a svg, .footer-container .navbar-container .navbar .navRight ul li a svg {
+    height: 4rem;
+    width: 4rem;
+    margin-left: 4rem;
+  }
+  .form-section {
+    height: 90vh;
+  }
+  .form-section .form-container {
+    margin: 20rem 0;
+  }
+  .form-section .form-container .first-part, .form-section .form-container .second-part {
+    padding: 8rem;
+  }
+  .form-section .form-container .first-part {
+    border-right: 2px solid rgba(255, 255, 255, 0.3);
+  }
+  .form-section .form-container .first-part .dp {
+    width: 35%;
+    margin-bottom: 2rem;
+  }
+  .form-section .form-container .first-part h2 {
+    font-size: 6rem;
+  }
+  .form-section .form-container .first-part p {
+    font-size: 2.2rem;
+    line-height: 3.5rem;
+  }
+  .form-section .form-container .first-part .divider {
+    margin: 3rem 0;
+    height: 2px;
+  }
+  .form-section .form-container .first-part .mail, .form-section .form-container .first-part .phone, .form-section .form-container .first-part .location {
+    margin-bottom: 1.5rem;
+  }
+  .form-section .form-container .first-part .mail svg, .form-section .form-container .first-part .phone svg, .form-section .form-container .first-part .location svg {
+    height: 4rem;
+    width: 4rem;
+  }
+  .form-section .form-container .first-part .mail p, .form-section .form-container .first-part .phone p, .form-section .form-container .first-part .location p {
+    font-size: 2.2rem;
+  }
+  .form-section .form-container .second-part .name-label, .form-section .form-container .second-part .mail-label, .form-section .form-container .second-part .message-label {
+    font-size: 2.2rem;
+  }
+  .form-section .form-container .second-part #name-input, .form-section .form-container .second-part #message-input, .form-section .form-container .second-part #mail-input {
+    height: 6rem;
+    font-size: 2rem;
+  }
+  .form-section .form-container .second-part #message-input {
+    height: 15rem;
+    font-size: 2rem;
+  }
+  .form-section .form-container .second-part .submit {
+    font-size: 2.3rem;
+  }
+}
+
+.preload .line-top {
+  animation: lineTop 1.5s infinite alternate-reverse;
+}
+
+.preload .line-bottom {
+  animation: lineBottom 1.5s infinite alternate-reverse;
+}
+
+@-webkit-keyframes lineTop {
+  from {
+    top: 30%;
+  }
+  to {
+    top: 65%;
+  }
+}
+
+@keyframes lineTop {
+  from {
+    top: 30%;
+  }
+  to {
+    top: 65%;
+  }
+}
+
+@-webkit-keyframes lineBottom {
+  from {
+    bottom: 30%;
+  }
+  to {
+    bottom: 65%;
+  }
+}
+
+@keyframes lineBottom {
+  from {
+    bottom: 30%;
+  }
+  to {
+    bottom: 65%;
+  }
+}
+/*# sourceMappingURL=contactstyle.css.map */
