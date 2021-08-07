@@ -540,6 +540,7 @@ a {
     width: 85%;
   }
   .container .navbar-container .navbar .navLeft li .logo svg, .footer-container .navbar-container .navbar .navLeft li .logo svg {
+    margin-top: 0.6rem;
     height: 2.5rem;
     width: 2.5rem;
   }
