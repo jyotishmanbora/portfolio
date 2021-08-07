@@ -9,7 +9,7 @@ html,
 body {
   height: 100vh;
   font-family: 'Montserrat', sans-serif;
-  background: url("./assets/bg.svg");
+  background: url("./bg.svg");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
