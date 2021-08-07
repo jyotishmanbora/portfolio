@@ -75,7 +75,7 @@ body
     .hero {
         position: relative;
         z-index: 1;
-        width: 70%;
+        width: 75%;
         padding: 1rem  0.5rem;
         border: 1px solid rgba(255,255,255,0.2);
         background: linear-gradient(to right bottom, rgba(255,255,255,0.3), rgba(255,255,255,0.15));
@@ -125,7 +125,7 @@ a{
     position: relative;
     z-index: 1;
     .navbar{
-        width: 70%;
+        width: 75%;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -166,7 +166,10 @@ a{
                 &:hover{
                     color: #B2FFFA;
                 }
-            }   
+            }
+            li:nth-child(4){
+                display: none;
+            }  
         }
         .navRight{
             display: none;
@@ -204,7 +207,7 @@ a{
         font-size: 1.5rem;
         margin-bottom: 2rem;
         text-align: start;
-        width: 70%;
+        width: 75%;
     }
     .explore-circle1{
         transform: translateY(0rem);
@@ -226,7 +229,7 @@ a{
         right: 6%;
     }
     .exploretiles{
-        width: 70%;
+        width: 75%;
         li{
             width: 100%;
             .exploretile1{
@@ -340,7 +343,7 @@ a{
     }
     .description-container{
         margin-bottom: 2rem;
-        width: 70%;
+        width: 75%;
         .title{
             color: #00FFF0;
             font-weight: 700;
@@ -365,7 +368,7 @@ a{
     .image-container{
         position: relative;
         z-index: 2;
-        width: 70%;
+        width: 75%;
         padding: 1.5rem;
         border-radius: 15px;
         background: linear-gradient(to left bottom, rgba(240,137,67,0.5), rgba(240,137,67,0.1));
@@ -401,6 +404,9 @@ a{
 @media only screen and (min-width: 768px){
     .preload .logo-stroke{
         width: 20%;
+    }
+    .footer-container .navbar-container .navbar .navLeft li:nth-child(4){
+        display: unset;
     }
     .container .hero{
         padding: 1rem 2rem;

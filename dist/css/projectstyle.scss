@@ -211,6 +211,9 @@ a{
                     color: #B2FFFA;
                 }
             }
+            li:nth-child(4){
+                display: none;
+            }
         }
         .navRight{
             display: none;
@@ -377,6 +380,9 @@ a{
 @media only screen and (min-width: 768px){
     .preload .logo-stroke{
         width: 20%;
+    }
+    .footer-container .navbar-container .navbar .navLeft li:nth-child(4){
+        display: unset;
     }
     .app-section .app-container, .poster-section .poster-container{
         .app1, .app2, .app3{
