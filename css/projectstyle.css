@@ -854,8 +854,9 @@ a {
     width: 85%;
   }
   .container .navbar-container .navbar .navLeft li .logo svg, .footer-container .navbar-container .navbar .navLeft li .logo svg {
-    height: 2.5rem;
-    width: 2.5rem;
+    margin-top: 0.2rem;
+    height: 1.8rem;
+    width: 1.8rem;
   }
   .container .navbar-container .navbar .navLeft .linksLeft a, .footer-container .navbar-container .navbar .navLeft .linksLeft a {
     font-size: 0.8rem;
