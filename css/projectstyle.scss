@@ -1,0 +1,816 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body
+{
+    height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    background: url("./bg.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+body
+{
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.preload{
+    height: 100vh;
+    width: 100%;
+    background-color: #242424;
+    position: fixed;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease;
+    .line-top, .line-bottom{
+        position: absolute;
+        width: 60%;
+        height: 2px;
+        background-color: white;
+    }
+    .wireframe{
+        width: 90%;
+        position: absolute;
+    }
+    .logo-stroke{
+        width: 25%;
+        position: absolute;
+    }
+    .line-top{
+        top: 30%;
+    }
+    .line-bottom{
+        bottom: 30%;
+    }
+}
+
+.preload-finish{
+    opacity: 0;
+    pointer-events: none;
+}
+
+@mixin sections{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .section-title{
+        color: #FFC200;
+        font-weight: 600;
+        font-size: 2.5rem;
+        width: 75%;
+        margin-bottom: 1rem;
+        margin-top: 3rem;
+    }
+    .section-description{
+        color: white;
+        font-weight: 400;
+        font-size: 1rem;
+        width: 75%;
+        margin-bottom: 3rem;  
+    }  
+}
+
+@mixin containers {
+    width: 75%;
+    background: linear-gradient(to bottom left, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    margin-bottom: 3rem;
+    .divider{
+        height: 1px;
+        width: 100%;
+        background: linear-gradient(to right, rgba(178,255,250,0),rgba(178,255,250,1),rgba(178,255,250,0));
+    }
+    .app1, .app2, .app3{
+        .description .large-screen-button{
+            display: none;
+        }
+        .ss2{
+            display: none;
+        }
+    }
+    .app1, .app2, .app3{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5rem;
+        .description{
+            .title{
+                font-size: 2rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+                text-align: center;
+            }
+            .info{
+                color: white;
+                font-size: 1.2rem;
+                font-weight: 400;
+                margin-bottom: 1.5rem;
+                text-align: center;
+            }
+        }
+        .ss1{
+            width: 100%;
+            border-radius: 10px;
+        }
+        .ss2{
+            width: 100%;
+            border-radius: 10px;
+        }
+        .small-screen-button{
+            color: #242424;
+            margin: 1.5rem;
+            padding: 0.6em 1.2em;
+            font-size: 1.2rem;
+            font-weight: 600;
+            background-color: white;
+            border: none;
+            border-radius: 40px;
+            box-shadow: 0 0 0 #FFC200;
+            transition: background-color 0.1s, box-shadow 0.1s;
+            transition-timing-function: linear;
+            &:hover{
+                background-color: #FFC200;
+                box-shadow: 0 0 15px #FFC200;
+            }
+        }
+    }
+}
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+.container .navbar-container, .footer-container .navbar-container{
+    width: 100vw;
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+    background-color: #3c3c3c;
+    position: relative;
+    z-index: 1;
+    .navbar{
+        width: 75%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .navLeft{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+            li .logo svg{
+                position: relative;
+                z-index: 3;
+                width: 3rem;
+                height: 3rem;
+                margin-top: 0.4rem;
+                &:hover{
+                    path{
+                        fill: #B2FFFA;
+                    }
+                }
+                path{
+                    display: block;
+                    fill: #00FFF0;
+                }
+            }
+            .linksLeft a{
+                font-size: 1.1rem;
+                position: relative;
+                z-index: 3;
+                // display: block;
+                padding-left: 1rem;
+                color: #00FFF0;
+                transition: color 0.25s;
+                transition-timing-function: linear;
+                &:hover{
+                    color: #B2FFFA;
+                }
+            }
+        }
+        .navRight{
+            display: none;
+        }
+    }
+}
+
+.app-section{
+    @include sections;
+    .app-container{
+        @include containers;
+        .app1{
+            background: rgba(30, 43, 109, 0.2);
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            .description .title{
+                color: #F08943;
+            }
+        }
+        .app2{
+            background: rgba(235, 21, 85, 0.1);
+            .description .title{
+                color: #00b7ff;
+            }
+        }
+
+        .app3{
+            background: rgba(8, 54, 83, 0.15);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            .description .title{
+                color: #ff4e41;
+            }
+        }
+    }
+}
+
+.web-section{
+    @include sections;
+    background-color: #3c3c3c;
+    .web-container{
+        @include containers;
+        .app1{
+            background: rgba(55, 99, 65, 0.15);
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            .description .title{
+                color: #2bbd63;
+            }
+            .small-screen-button{
+                padding: 0.6em 1.5em;
+            }
+        }
+        .app2{
+            background: rgba(57, 224, 224, 0.1);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            .description .title{
+                color: #00FFF0;
+            }
+            .small-screen-button{
+                padding: 0.6em 1.5em;
+            }
+        }
+    }
+}
+
+.logo-section{
+    @include sections;
+    .logo-container{
+        @include containers;
+        .app1{
+            padding: 3rem;
+            .description .title{
+                color: #ff4e41;
+            }
+        }
+        .app2{
+            padding: 3rem;
+            background: rgba(255,255,255,0.05);
+            .description .title{
+                color: #2bbd63;
+            }
+        }
+        .app3{
+            padding: 3rem;
+            background: rgba(255, 198, 9, 0.08);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            .description .title{
+                color: #FFC200;
+            }
+        }
+    }
+}
+
+.poster-section{
+    @include sections;
+    background-color: #3c3c3c;
+    a{
+        color: #00FFF0;
+        margin-bottom: 2rem
+    }
+    .poster-container{
+        @include containers;
+        .app1{
+            background: rgba(178, 255, 250, 0.1);
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+    }
+}
+
+.technology-section{
+    @include sections;
+    .tech-container{
+        width: 75%;
+        background: linear-gradient(to bottom, rgba(255,255,255,0.25), rgba(255,255,255,0.1));
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 20px;
+        margin-bottom: 3rem;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 1.5rem;
+        .tech{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0.6rem;
+            svg{
+                height: 3.5rem;
+            }
+            p{
+                text-align: center;
+                margin-top: 0.5rem;
+                color: white;
+            }
+        }
+        .divider{
+            height: 1px;
+            width: 100%;
+            background: linear-gradient(to right, rgba(178,255,250,0),rgba(178,255,250,1),rgba(178,255,250,0));
+        }
+    }
+}
+
+.footer-container{
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #3c3c3c;
+    .copyright{
+        text-align: center;
+        padding: 1rem 0;
+        color: white;
+        font-weight: 400;
+        font-size: 1rem;
+    } 
+}
+
+@media only screen and (max-width: 575px){
+    .container, .footer-container{
+        .navbar-container .navbar{
+            width: 85%;
+            .navLeft{
+                li .logo svg{
+                    height: 2.5rem;
+                    width: 2.5rem;
+                }
+                .linksLeft a{
+                    font-size: 0.8rem;
+                }
+            }
+        }
+        .copyright{
+            font-size: 0.8rem;
+        }
+    }
+    .app-section, .web-section, .logo-section, .poster-section, .technology-section{
+        .section-title, .section-description{
+            width: 85%;
+        }
+        .section-title{
+            font-size: 2.2rem;
+        }
+        .section-description{
+            font-size: 0.9rem;
+        }
+        .app-container, .web-container, .logo-container, .poster-container, .tech-container{
+            width: 85%;
+            .app1, .app2, .app3{
+                .description{
+                    .info{
+                        font-size: 1rem;
+                    }
+                }
+                .small-screen-button{
+                    font-size: 1rem;
+                }
+            }
+        }
+        .web-container .app1 .description .title{
+            font-size: 1.5rem;
+        }
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .preload .logo-stroke{
+        width: 20%;
+    }
+    .app-section .app-container, .poster-section .poster-container{
+        .app1, .app2, .app3{
+            padding: 4rem;
+        }
+    }
+    .logo-section .logo-container{
+        .app1, .app2, .app3{
+            padding: 6rem;
+        }
+    }
+    .web-section .web-container{
+        .app1, .app2, .app3{
+            padding: 3rem;
+        }
+    }
+}
+
+@media only screen and (min-width: 992px){
+    .preload{
+        .logo-stroke{
+            width: 15%;
+        }
+        .wireframe{
+            width: 70%;
+        }
+    }
+    .container .navbar-container .navbar, .footer-container .navbar-container .navbar{
+        width: 80%;
+        .navLeft{
+            width: unset;
+            li a{
+                font-size: 1.4rem;
+            }
+        } 
+        .navRight{
+            display: flex;
+            ul{
+                display: flex;
+                justify-content: end;
+                align-items: center;
+                float: right;
+                li{
+                    padding: 0 0.5rem;
+                    a svg{
+                        height: 2rem;
+                        width: 2rem;
+                        path{
+                            fill: #00FFF0;
+                        }
+                        &:hover{
+                            path{
+                                fill: #B2FFFA;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .app-section, .web-section, .logo-section, .poster-section, .technology-section{
+        .section-title, .section-description, .tech-container{
+            width: 80%;
+        }
+        .app-container, .web-container, .logo-container, .poster-container{
+            width: 80%;
+            .app1, .app2, .app3{
+                padding: 2rem;
+                flex-direction: row;
+                justify-content: space-between;
+                .ss2{
+                    display: unset;
+                }
+                .description {
+                    .title, .info{
+                        text-align: start;
+                    }
+                    .large-screen-button{
+                        color: #242424;
+                        display: unset;
+                        margin: 1rem 0;
+                        padding: 0.6em 1.2em;
+                        font-size: 1.2rem;
+                        font-weight: 600;
+                        background-color: white;
+                        border: none;
+                        border-radius: 40px;
+                        box-shadow: 0 0 0 #FFC200;
+                        transition: background-color 0.1s, box-shadow 0.1s;
+                        transition-timing-function: linear;
+                        &:hover{
+                            background-color: #FFC200;
+                            box-shadow: 0 0 15px #FFC200;
+                        }
+                    }
+                }
+                .ss1, .ss2{
+                    width: 30%;
+                    border-radius: 15px;
+                    margin: 1rem;
+                }
+                .small-screen-button{
+                    display: none;
+                }
+            }
+        }
+    }
+    .web-section .web-container{
+        .app1, .app2{
+            .ss1{
+                width: 45%;
+            }
+            .description .large-screen-button{
+                padding: 0.6em 1.5em;
+            }
+        }
+    }
+    .poster-section .poster-container{
+        display: flex;
+        flex-direction: row;
+        .divider{
+            display: none;
+        }
+        .app1, .app2{
+            justify-content: center;
+            width: 50%;
+            .ss1{
+                width: 100%;
+                border-radius: 10px;
+            }
+        }
+        .app1{
+            border-top-right-radius: unset;
+            border-bottom-left-radius: 20px;
+        }
+        .app2{
+            border-bottom-left-radius: unset;
+            border-top-right-radius: 20px;
+        }
+    }
+}
+
+@media only screen and (min-width: 1200px){
+    .preload{
+        .logo-stroke{
+            width: 10%;
+        }
+        .wireframe{
+            width: 60%;
+        }
+    }
+    .app-section, .web-section, .logo-section, .poster-section, .technology-section{
+        padding: 3rem 0;
+        a{
+            font-size: 1.3rem;
+        }
+        .section-title{
+            font-size: 4rem;
+        }
+        .section-description{
+            font-size: 1.5rem;
+        }
+        .app-container, .web-container, .logo-container, .poster-container{
+            .app1, .app2, .app3{
+                .description{
+                    .title{
+                        font-size: 3rem;
+                    }
+                    .info{
+                        font-size: 1.3rem;
+                    }
+                    .large-screen-button{
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1400px){
+    .container, .footer-container{
+        .navbar-container .navbar{
+            width: 70%;
+            .navLeft{
+                .linksLeft{
+                    margin-left: 2rem;
+                }
+            }
+            .navRight{
+                ul li{
+                    margin-left: 2rem;
+                }
+            }
+        }
+    }
+    .app-section, .web-section, .logo-section, .poster-section, .technology-section{
+        .section-title, .section-description, .app-container, .web-container, .logo-container, .poster-container, .tech-container{
+            width: 70%;
+        }
+    }
+
+}
+
+@media only screen and (min-width: 1600px){
+    .app-section, .web-section, .logo-section{
+        .section-title, .section-description, .app-container, .web-container, .logo-container{
+            .app1, .app2, .app3{
+                .description{
+                    margin-left: 1.5rem;
+                }
+            }
+        }
+    }
+    .poster-section .poster-container{
+        .app1, .app2{
+            padding: 4rem;
+        }
+    }
+}
+
+@media only screen and (min-width: 1800px){
+    .app-section, .web-section{
+        .app-container, .web-container{
+            .app1, .app2, .app3{
+                .description .large-screen-button{
+                    font-size: 1.5rem;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 2560px){
+    .preload{
+        .logo-stroke{
+            width: 7%;
+        }
+        .wireframe{
+            width: 50%;
+        }
+    }
+    .container, .footer-container{
+        .navbar-container .navbar .navLeft li .logo svg{
+            height: 5rem;
+            width: 5rem;
+        }
+    }
+    .app-section, .web-section, .logo-section, .poster-section, .technology-section{
+        padding: 3rem 0;
+        a{
+            font-size: 2rem;
+        }
+        .section-title{
+            font-size: 5rem;
+            margin-bottom: 2rem;
+        }
+        .section-description{
+            font-size: 2rem;
+            margin-bottom: 5rem;
+        }
+        .app-container, .web-container, .logo-container, .poster-container{
+            .app1, .app2, .app3{
+                padding: 5rem;
+                .description{
+                    .title{
+                        font-size: 5rem;
+                    }
+                    .info{
+                        font-size: 2rem;
+                    }
+                    .large-screen-button{
+                        font-size: 2rem;
+                    }
+                }
+            }
+        }
+    }
+    .app-section .app-container{
+        .app1, .app2, .app3{
+            .ss1, .ss2{
+                width: 26%;
+            }
+        }
+    }
+    .poster-section .poster-container{
+        .app1, .app2{
+            .ss1{
+                width: 90%;
+            }
+        }
+    }
+    .technology-section .tech-container{
+        .tech{
+            margin: 1.5rem;
+            svg{
+                height: 5rem;
+            }
+            p{
+                font-size: 1.5rem;
+                margin: 1.2rem;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 3800px){
+    .container, .footer-container{
+        .copyright{
+            font-size: 2rem;
+        }
+        .navbar-container .navbar{
+            .navLeft{
+                li .logo svg{
+                    height:6rem;
+                    width: 6rem;
+                }
+                .linksLeft a{
+                    font-size: 2.2rem;
+                    padding-left: 4rem;
+                }
+            }
+            .navRight{
+                ul li a svg{
+                    height: 4rem;
+                    width: 4rem;
+                    margin-left: 4rem;
+                }
+            }
+        }
+    }
+    .app-section, .web-section, .logo-section, .poster-section, .technology-section{
+        padding: 4rem 0;
+        a{
+            font-size: 2rem;
+        }
+        .section-title{
+            font-size: 7rem;
+            margin-bottom: 3rem;
+        }
+        .section-description{
+            font-size: 3rem;
+            margin-bottom: 6rem;
+        }
+        .app-container, .web-container, .logo-container, .poster-container{
+            .app1, .app2, .app3{
+                padding: 7rem;
+                .description{
+                    .title{
+                        font-size: 6rem;
+                    }
+                    .info{
+                        font-size: 2.5rem;
+                    }
+                    .large-screen-button{
+                        font-size: 2.5rem;
+                        border-radius: 50px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.preload .line-top{
+    animation: lineTop 1.5s infinite alternate-reverse;
+}
+
+.preload .line-bottom{
+    animation: lineBottom 1.5s infinite alternate-reverse;
+}
+
+@keyframes lineTop {
+    from {
+        top: 30%;
+    }
+    to {
+        top: 65%;
+    }
+}
+
+@keyframes lineBottom {
+    from {
+        bottom: 30%;
+    }
+    to {
+        bottom: 65%;
+    }
+}

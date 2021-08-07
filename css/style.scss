@@ -1,0 +1,1196 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body
+{
+    height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    background: rgb(24, 24, 24);
+}
+
+body
+{
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.preload{
+    height: 100vh;
+    width: 100%;
+    background-color: #242424;
+    position: fixed;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease;
+    .line-top, .line-bottom{
+        position: absolute;
+        width: 60%;
+        height: 2px;
+        background-color: white;
+    }
+    .wireframe{
+        width: 90%;
+        position: absolute;
+    }
+    .logo-stroke{
+        width: 25%;
+        position: absolute;
+    }
+    .line-top{
+        top: 30%;
+    }
+    .line-bottom{
+        bottom: 30%;
+    }
+}
+
+.preload-finish{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.webgl
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    outline: none;
+    mix-blend-mode: screen;
+}
+
+.container{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    .hero {
+        position: relative;
+        z-index: 1;
+        width: 75%;
+        padding: 1rem  0.5rem;
+        border: 1px solid rgba(255,255,255,0.2);
+        background: linear-gradient(to right bottom, rgba(255,255,255,0.3), rgba(255,255,255,0.15));
+        border-radius: 12px;
+        backdrop-filter: blur(4px);
+        .hero-name{
+            position: relative;
+            z-index: 1;
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-align: center;
+            color: white;
+        }
+        .hero-description{
+            position: relative;
+            z-index: 1;
+            color: white;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1rem;
+            font-weight: 500;
+            padding-top: 0.5rem;
+        }
+    }
+    .scroll-svg{
+        transform: translateY(-10vh);
+    }
+}
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+.container .navbar-container, .footer-container .navbar-container{
+    width: 100vw;
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+    background-color: #3c3c3c;
+    position: relative;
+    z-index: 1;
+    .navbar{
+        width: 75%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .navLeft{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+            li .logo svg{
+                position: relative;
+                z-index: 3;
+                width: 3.5rem;
+                height: 3.5rem;
+                margin-top: 0.4rem;
+                &:hover{
+                    path{
+                        fill: #B2FFFA;
+                    }
+                }
+                path{
+                    display: block;
+                    fill: #00FFF0;
+                }
+            }
+            .linksLeft a{
+                font-size: 1.1rem;
+                position: relative;
+                z-index: 3;
+                // display: block;
+                padding-left: 1rem;
+                color: #00FFF0;
+                transition: color 0.25s;
+                transition-timing-function: linear;
+                &:hover{
+                    color: #B2FFFA;
+                }
+            }  
+        }
+        .navRight{
+            display: none;
+        }
+    }
+}
+
+.footer-container{
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #3c3c3c;
+    .copyright{
+        text-align: center;
+        padding: 1rem 0;
+        color: white;
+        font-weight: 400;
+        font-size: 1rem;
+    } 
+}
+
+.explore-container{
+    position: relative;
+    background: #343434;
+    padding-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100vw;
+    .explore-title{
+        font-weight: 400;
+        color: #00FFF0;
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        text-align: start;
+        width: 75%;
+    }
+    .explore-circle1{
+        transform: translateY(0rem);
+        height: 12rem;
+        width: 12rem;
+        border-radius: 50%;
+        background: linear-gradient(to right, rgba(255,228,141,0.7), rgba(255,228,141,0.1));
+        position: absolute;
+        top: 20%;
+        left: 3%;
+    }
+    .explore-circle2{
+        height: 15rem;
+        width: 15rem;
+        border-radius: 50%;
+        background: linear-gradient(to left, rgba(178,255,250,0.7), rgba(178,255,250,0.1));
+        position: absolute;
+        bottom: 10%;
+        right: 6%;
+    }
+    .exploretiles{
+        width: 75%;
+        li{
+            width: 100%;
+            .exploretile1{
+                position: relative;
+                z-index: 1;
+                border-radius: 15px;
+                border: 1px solid rgba(255,255,255,0.2);
+                width: 100%;
+                background: linear-gradient(to right bottom, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+                backdrop-filter: blur(6px);
+                padding: 1rem;
+                margin-bottom: 3rem;
+                margin-top: 3rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-evenly;
+                .app-icon{
+                    height: 5rem;
+                    width: 5rem;
+                    margin: 0.7rem;
+                }
+                .title{
+                    color: white;
+                    font-weight: 600;
+                    font-size: 3rem;
+                    margin: 0.3rem 1rem 1rem 1rem;
+                }
+                .description{
+                    color: white;
+                    font-weight: 400;
+                    font-size: 1.5rem;
+                }
+                .button{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 1.5rem;
+                    height: 4rem;
+                    width: 4rem;
+                    border-radius: 50%;
+                    border: none;
+                    background-color: white;
+                    box-shadow: 0 0 0 #FFC200;
+                    transition: background-color 0.1s, box-shadow 0.1s;
+                    transition-timing-function: linear;
+                    &:hover{
+                        background-color: #FFC200;
+                        box-shadow: 0 0 15px #FFC200;
+                    }
+                    .send-icon{
+                        height: 2.5rem;
+                        width: 2.5rem;
+                        color: #242424
+                    }
+                }
+            }
+            .exploretile2{
+                @extend .exploretile1;
+                .web-icon{
+                    height: 5rem;
+                    width: 5rem;
+                    margin: 0.7rem;
+                }
+            }
+            .exploretile3{
+                @extend .exploretile1;
+                .design-icon{
+                    height: 5rem;
+                    width: 5rem;
+                    margin: 0.7rem;
+                }
+            }
+            .linebreak{
+                height: 1px;
+                width: 100%;
+                background: linear-gradient(to right, rgba(178,255,250,0),rgba(178,255,250,1),rgba(178,255,250,0));
+            }
+        }
+    }
+}
+
+.featured-container{
+    position: relative;
+    padding-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100vw;
+    .circle1{
+        transform: translateY(0rem);
+        height: 10rem;
+        width: 10rem;
+        border-radius: 50%;
+        background: linear-gradient(to left, rgba(255,228,141,0.5), rgba(255,228,141,0.1));
+        position: absolute;
+        top: 20%;
+        right: 6%;
+        border: 1px solid rgba(255,255,255,0.2);
+    }
+    .circle2{
+        transform: translateY(0rem);
+        height: 10rem;
+        width: 10rem;
+        border-radius: 50%;
+        background: linear-gradient(to right, rgba(178,255,250,0.5), rgba(178,255,250,0.1));
+        position: absolute;
+        bottom: 8%;
+        left: 3%;
+    }
+    .description-container{
+        margin-bottom: 2rem;
+        width: 75%;
+        .title{
+            color: #00FFF0;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        .app-name{
+            color: #FFC200;
+            font-weight: 500;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .description{
+            color: white;
+            font-weight: 400;
+            font-size: 1.5rem;
+        }
+        .large-screen-button{
+            display: none;
+        }
+    }
+    .image-container{
+        position: relative;
+        z-index: 2;
+        width: 75%;
+        padding: 1.5rem;
+        border-radius: 15px;
+        background: linear-gradient(to left bottom, rgba(240,137,67,0.5), rgba(240,137,67,0.1));
+        border: 1px solid rgba(255,255,255,0.2);
+        display: flex;
+        .home-ui{
+            width: 100%;
+            border-radius: 10px;
+        }
+        .chat-ui{
+            display: none;
+        }
+    }
+    .small-screen-button{
+        margin: 2rem;
+        background-color: white;
+        padding: 0.8em 1.5em;
+        border: none;
+        border-radius: 30px;
+        box-shadow: 0 0 0 #FFC200;
+        transition: background-color 0.1s, box-shadow 0.1s;
+        transition-timing-function: linear;
+        &:hover{
+            background-color: #FFC200;
+            box-shadow: 0 0 15px #FFC200;
+        }
+        font-weight: 700;
+        font-size: 1.3rem;
+        color: #242424;
+    }
+}
+
+@media only screen and (max-width: 575px){
+    .container, .footer-container{
+        .navbar-container .navbar{
+            width: 85%;
+            .navLeft{
+                li .logo svg{
+                    height: 2.5rem;
+                    width: 2.5rem;
+                }
+                .linksLeft a{
+                    font-size: 0.8rem;
+                }
+            }
+        }
+        .copyright{
+            font-size: 0.8rem;
+        }
+    }
+    .container .hero{
+        width: 85%;
+        .hero-name{
+            font-size: 1.5rem;
+        }
+        .hero-description{
+            font-size: 0.8rem;
+        }
+    }
+    .explore-container{
+        .explore-title{
+            width: 85%;
+        }
+        .exploretiles{
+            width: 85%;
+            li{
+                .exploretile1, .exploretile2, .exploretile3{
+                    div .app-icon, div .web-icon, div .design-icon{
+                        height: 3rem;
+                        width: 3rem;
+                    }
+                    .title{
+                        font-size: 2rem;
+                    }
+                    .description{
+                        font-size: 1rem;
+                    }
+                    .button{
+                        height: 3.2rem;
+                        width: 3.2rem;
+                        .send-icon{
+                            height: 2rem;
+                            width: 2rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .featured-container{
+        .description-container{
+            width: 85%;
+            .title{
+                font-size: 0.9rem;
+            }
+            .app-name{
+                font-size: 2rem;
+            }
+            .description{
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+        }
+        .image-container{
+            width: 85%;
+        }
+        .small-screen-button{
+            padding: 0.6em 1.2em;
+            font-size: 1rem;
+        }
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .preload .logo-stroke{
+        width: 20%;
+    }
+    .container .hero{
+        padding: 1rem 2rem;
+        .hero-name{
+            font-size: 2.8rem;
+        }
+        .hero-description{
+            font-size: 1.3rem;
+        }
+    }
+
+    .explore-container .explore-title{
+        font-size: 2rem;
+    }
+
+    .featured-container{
+        .circle1{
+            height: 13rem;
+            width: 13rem;
+        }
+        .circle2{
+            height: 12rem;
+            width: 12rem;
+        }
+        .description-container{
+            .title{
+                font-size: 1.4rem;
+            }
+            .app-name{
+                font-size: 4rem;
+            }
+            .description{
+                font-size: 1.7rem;
+            }
+        }
+        .image-container{
+            padding: 2.5rem;
+        }
+        .small-screen-button {
+            font-size: 2rem;
+        }
+    } 
+
+    .explore-container .exploretiles li .exploretile1 .description, .explore-container .exploretiles li .exploretile2 .description, .explore-container .exploretiles li .exploretile3 .description{
+        font-size: 2rem;
+    }
+    
+}
+
+@media only screen and (min-width: 992px){
+    .preload{
+        .logo-stroke{
+            width: 15%;
+        }
+        .wireframe{
+            width: 70%;
+        }
+    }
+    .container .navbar-container .navbar, .footer-container .navbar-container .navbar{
+        .navLeft{
+            width: unset;
+            li .logo svg{
+                height: 4rem;
+                width: 4rem;
+                padding-top: 0.3rem;
+            }
+            li a{
+                font-size: 1.4rem;
+            }
+        } 
+        .navRight{
+            display: flex;
+            ul{
+                display: flex;
+                justify-content: end;
+                align-items: center;
+                float: right;
+                li{
+                    padding: 0 0.5rem;
+                    a svg{
+                        height: 2rem;
+                        width: 2rem;
+                        path{
+                            fill: #00FFF0;
+                        }
+                        &:hover{
+                            path{
+                                fill: #B2FFFA;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    // .footer-container .navbar-container .navbar{
+    //     .navLeft{
+    //         width: unset;
+    //         li .logo svg{
+    //             height: 4rem;
+    //             width: 4rem;
+    //             padding-top: 0.3rem;
+    //         }
+    //         li a{
+    //             font-size: 1.4rem;
+    //         }
+    //     } 
+    //     .navRight{
+    //         display: flex;
+    //         ul{
+    //             display: flex;
+    //             justify-content: end;
+    //             align-items: center;
+    //             float: right;
+    //             li{
+    //                 padding: 0 0.5rem;
+    //                 a svg{
+    //                     height: 2rem;
+    //                     width: 2rem;
+    //                     path{
+    //                         fill: #00FFF0;
+    //                     }
+    //                     &:hover{
+    //                         path{
+    //                             fill: #B2FFFA;
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+    .container .navbar-container .navbar, .footer-container .navbar-container .navbar, .container .hero, .explore-container .explore-title, .explore-container .exploretiles{
+        width: 80%;
+    }
+    .explore-container .explore-circle2{
+        height: 13rem;
+        width: 13rem;
+        right: 3%;
+    }
+    .explore-container .exploretiles{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        li{
+            width: auto;
+            margin-bottom: 2.5rem;
+        }
+        li:nth-child(1), li:nth-child(3), li:nth-child(5){
+            width: 28%;
+        }
+        li .exploretile1, li .exploretile2, li .exploretile3{
+            width: 100%;
+            margin: 0 auto;
+            .app-icon{
+                height: 2.5rem;
+                width: 2.5rem;
+            }
+            .web-icon{
+                height: 2.5rem;
+                width: 2.5rem;
+            }
+            .design-icon{
+                height: 2.5rem;
+                width: 2.5rem;
+            }
+            .title{
+                font-size: 2rem;
+            }
+            .description{
+                font-size: 1rem;
+            }
+        }
+        li .linebreak{
+            height: 100%;
+            width: 1px;
+            background: linear-gradient(to bottom, rgba(178,255,250,0),rgba(178,255,250,1),rgba(178,255,250,0));
+        }
+    }
+    .featured-container{
+        padding-bottom: 3rem;
+        flex-direction: row;
+        justify-content: center;
+        .circle1{
+            top: 3%;
+            right: 2%;
+            height: 15rem;
+            width: 15rem;
+        }
+        .circle2{
+            height: 13rem;
+            width: 13rem;
+            left: 33%;
+        }
+        .description-container{
+            width: 35%;
+            .title{
+                font-size: 1.2rem;
+            }
+            .app-name{
+                font-size: 2.5rem;
+            }
+            .description{
+                font-size: 1.4rem;
+            }
+            .large-screen-button{
+                display: block;
+                width: fit-content;
+                margin: 1.8rem 0;
+                padding: 0.8em 1.5em;
+                border: none;
+                border-radius: 30px;
+                background-color: white;
+                box-shadow: 0 0 0 #FFC200;
+                transition: background-color 0.1s, box-shadow 0.1s;
+                transition-timing-function: linear;
+                &:hover{
+                    background-color: #FFC200;
+                    box-shadow: 0 0 15px #FFC200;
+                }
+                font-size: 1.2rem;
+                font-weight: 700;
+                color: #242424;
+            }
+        }
+        .image-container{
+            width: 45%;
+        }
+        .small-screen-button{
+            display: none;
+        }
+    }
+    .container .hero{
+        padding: 1rem 3rem;
+        .hero-name{
+            font-size: 4rem;
+        }
+        .hero-description{
+            font-size: 1.8rem;
+        }
+    }
+}
+
+@media only screen and (min-width: 1200px){
+    .preload{
+        .logo-stroke{
+            width: 10%;
+        }
+        .wireframe{
+            width: 60%;
+        }
+    }
+    .container .hero{
+        .hero-name{
+            font-size: 5rem;
+        }
+        .hero-description{
+            font-size: 2rem;
+        }
+    }
+    .featured-container{
+        .description-container{
+            width: 30%;
+        }
+        .image-container{
+            width: 50%;
+            display: flex;
+            justify-content: space-between;
+            .home-ui{
+                width: 45%;
+            }
+            .chat-ui{
+                display: unset;
+                width: 45%;
+                border-radius: 10px;
+            }
+        }
+    }
+    .explore-container .exploretiles li{
+        .exploretile1, .exploretile2, .exploretile3{
+            .app-icon{
+                height: 4rem;
+                width: 4rem;
+            }
+            .web-icon{
+                height: 4rem;
+                width: 4rem;
+            }
+            .design-icon{
+                height: 4rem;
+                width: 4rem;
+            }
+            .description{
+                font-size: 1.3rem;
+            }
+        }
+    }
+}
+@media only screen and (min-width: 1400px){
+    .container .hero{
+        backdrop-filter: blur(7px);
+        .hero-name{
+            font-weight: 600;
+        }
+    }
+    .container .navbar-container .navbar, .footer-container .navbar-container .navbar, .container .hero, .explore-container .explore-title, .explore-container .exploretiles{
+        width: 70%;
+    }
+    .container, .footer-container{
+        .navbar-container .navbar{
+            .navLeft{
+                .linksLeft{
+                    margin-left: 2rem;
+                }
+            }
+            .navRight{
+                ul li{
+                    margin-left: 2rem;
+                }
+            }
+        }
+    }
+    .featured-container{
+        .circle1{
+            right: 7%;
+        }
+        .circle2{
+            left: 30%;
+        }
+        .description-container{
+            width: 20%;
+            .title{
+                margin-bottom: 1.3rem;
+            }
+            .app-name{
+                font-size: 2.3rem;
+                margin-bottom: 1.3rem;
+            }
+            .large-screen-button{
+                margin: 1.5rem 0;
+            }
+            .description{
+                line-height: 2rem;
+            }
+        }
+        .image-container{
+            width: 50%;
+            display: flex;
+            justify-content: space-between;
+            .home-ui{
+                width: 47%;
+            }
+            .chat-ui{
+                display: unset;
+                width: 47%;
+                border-radius: 10px;
+            }
+        }
+    }
+    .explore-container{
+        .explore-circle1{
+            left: 7%;
+        }
+        .explore-circle2{
+            right: 7%;
+        }
+    }
+}
+
+@media only screen and (min-width: 1600px){
+    .container .hero{
+        padding: 1.5rem 4rem;
+        .hero-name{
+            font-size: 5.5rem;
+        }
+        .hero-description{
+            font-size: 2.2rem;
+        }
+    }
+    .explore-container .exploretiles{
+        li:nth-child(1), li:nth-child(3), li:nth-child(5){
+            width: 25%;
+        }
+    }
+}
+
+@media only screen and (min-width: 1800px){
+    .container .hero{
+        padding: 1.5rem 8rem;
+    }
+    .featured-container{
+        .description-container{
+            .title{
+                font-size: 1.5rem;
+                margin-bottom: 2rem;
+            }
+            .app-name{
+                font-size: 3rem;
+                margin-bottom: 2rem;
+            }
+            .large-screen-button{
+                margin: 2.8rem 0;
+            }
+        }
+        .image-container{
+            padding: 4rem;
+        }
+    }
+}
+
+@media only screen and (min-width: 2000px){
+    .container .hero{
+        padding: 1.5rem 12rem;
+    }
+}
+
+@media only screen and (min-width: 2560px){
+    .preload{
+        .logo-stroke{
+            width: 7%;
+        }
+        .wireframe{
+            width: 50%;
+        }
+    }
+    .container, .footer-container{
+        .navbar-container .navbar .navLeft li .logo svg{
+            height: 5rem;
+            width: 5rem;
+        }
+    }
+    .container .hero{
+        padding: 1.8rem 12rem;
+        .hero-name{
+            font-size: 7rem;
+        }
+        .hero-description{
+            font-size: 3rem;
+        }
+    }
+    .explore-container{
+        .explore-circle1{
+            height: 15rem;
+            width: 15rem;
+            left: 10%;
+        }
+        .explore-circle2{
+            height: 15rem;
+            width: 15rem;
+            right: 10%;
+        }
+        .exploretiles li{
+            .exploretile1, .exploretile2, .exploretile3{
+                .app-icon{
+                    height: 6rem;
+                    width: 6rem;
+                }
+                .web-icon{
+                    height: 6rem;
+                    width: 6rem;
+                }
+                .design-icon{
+                    height: 6rem;
+                    width: 6rem;
+                }
+                .title{
+                    font-size: 3rem;
+                }
+                .description{
+                    font-size: 1.5rem;
+                }
+                .button{
+                    height: 5rem;
+                    width: 5rem;
+                    .send-icon{
+                        height: 3rem;
+                        width: 3rem;
+                    }
+                } 
+            }
+        }
+    }
+    .featured-container{
+        .description-container{
+            .title{
+                font-size: 1.8rem;
+            }
+            .app-name{
+                font-size: 4rem;
+            }
+            .description{
+                font-size: 1.5rem;
+                line-height: 2.3rem;
+            }
+            .large-screen-button {
+                font-size: 1.5rem;
+            }
+        }
+        .circle1{
+            height: 20rem;
+            width: 20rem;
+        }
+        .circle2{
+            height: 18rem;
+            width: 18rem;
+        }
+    }
+}
+@media only screen and (min-width: 3800px){
+    .container, .footer-container{
+        .navbar-container .navbar{
+            .navLeft{
+                li .logo svg{
+                    height:6rem;
+                    width: 6rem;
+                }
+                .linksLeft a{
+                    font-size: 2.2rem;
+                    padding-left: 4rem;
+                }
+            }
+            .navRight{
+                ul li a svg{
+                    height: 4rem;
+                    width: 4rem;
+                    margin-left: 4rem;
+                }
+            }
+        }
+        .hero{
+            backdrop-filter: blur(8px);
+            .hero-name{
+                font-size: 10rem;
+            }
+            .hero-description{
+                font-size: 4rem;
+            }
+        }
+    }
+    .footer-container .copyright{
+        font-size: 2rem;
+    }
+    .explore-container{
+        padding-bottom: 3rem;
+        .explore-title{
+            font-size: 3rem;
+            padding: 2rem 0;
+        }
+        .explore-circle2, .explore-circle1{
+            height: 20rem;
+            width: 20rem;
+        }
+        .exploretiles li{
+            .exploretile1, .exploretile2, .exploretile3{
+                .app-icon, .web-icon, .design-icon{
+                    height: 7rem;
+                    width: 7rem;
+                }
+                .title{
+                    font-size: 4rem;
+                    padding: 1rem 0;
+                }
+                .description{
+                    font-size: 2rem;
+                    padding-bottom: 1rem;
+                }
+                .button{
+                    margin: 2rem 0;
+                    height: 6rem;
+                    width: 6rem;
+                    .send-icon{
+                        height: 4rem;
+                        width: 4rem;
+                    }
+                }
+            }
+        }
+    } 
+    .featured-container{
+        padding: 6rem 0;
+        .description-container{
+            .title{
+                font-size: 2.6rem;
+                margin-bottom: 3rem;
+            }
+            .app-name{
+                font-size: 6rem;
+                margin-bottom: 3rem;
+            }
+            .description{
+                font-size: 2.5rem;
+                line-height: 4rem;
+            }
+            .large-screen-button{
+                padding: 1rem 2rem;
+                border-radius: 40px;
+                margin: 3.5rem 0;
+                font-size: 2.5rem;
+            }
+        }
+        .image-container{
+            padding: 7rem;
+            border-radius: 40px;
+            .home-ui, .chat-ui{
+                border-radius: 30px;
+            }
+        }
+        .circle1{
+            height: 27rem;
+            width: 27rem;
+            right: 9%;
+        }
+        .circle2{
+            height: 25rem;
+            width: 25rem;
+        }
+    }
+}
+
+.circle {
+    animation: circleAnim 1s infinite alternate-reverse;
+}
+
+.featured-container .circle1{
+    animation: fCircle1Anim 4s infinite alternate-reverse;
+}
+
+.featured-container .circle2{
+    animation: fCircle2Anim 4.5s infinite alternate-reverse;
+}
+
+.preload .line-top{
+    animation: lineTop 1.5s infinite alternate-reverse;
+}
+
+.preload .line-bottom{
+    animation: lineBottom 1.5s infinite alternate-reverse;
+}
+
+@keyframes lineTop {
+    from {
+        top: 30%;
+    }
+    to {
+        top: 65%;
+    }
+}
+
+@keyframes lineBottom {
+    from {
+        bottom: 30%;
+    }
+    to {
+        bottom: 65%;
+    }
+}
+
+
+
+@keyframes circleAnim {
+    from {
+        transform: translate(262px, 798px);
+        z-index: 5;
+    }
+    to {
+        transform: translate(262px, 830px);
+    }
+}
+
+@keyframes fCircle1Anim{
+    from{
+        transform: translateY(0rem);
+    }
+    to{
+        transform: translateY(20rem);
+    }
+}
+
+@keyframes fCircle2Anim{
+    from{
+        transform: translateY(0rem);
+    }
+    to{
+        transform: translateY(-20rem);
+    }
+}
+
+.explore-container .explore-circle1 {
+    animation: eCircle1Anim 3.5s infinite alternate-reverse;
+}
+
+@keyframes eCircle1Anim{
+    from{
+        transform: translateY(0rem);
+    }
+    to{
+        transform: translateY(10rem);
+    }
+}
+
+.explore-container .explore-circle2 {
+    animation: eCircle2Anim 3s infinite alternate-reverse;
+}
+
+@keyframes eCircle2Anim{
+    from{
+        transform: translateY(0rem);
+    }
+    to{
+        transform: translateY(-10rem);
+    }
+}
